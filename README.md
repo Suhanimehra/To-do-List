@@ -20,4 +20,4 @@ A next-generation, smart to-do list application built with **Next.js**, **Tailwi
 - 🌐 Location & time detection
 - 🧠 AI-based smart command parsing
 
-- ### Live - 
+- ### Live - https://to-do-list-blush-eight-33.vercel.app/
