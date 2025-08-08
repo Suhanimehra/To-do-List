@@ -9,49 +9,105 @@ export default function TaskList() {
   const deleteTask = useTasksStore((state) => state.deleteTask);
 
   if (tasks.length === 0) {
-    return <p className="text-gray-500">No tasks added yet.</p>;
+    return (
+      <div className="card-kawaii p-8 text-center">
+        <div className="text-4xl mb-4">🌸</div>
+        <p className="text-pink-500 text-sm">
+          No magical tasks yet! ✨<br />
+          Add your first kawaii task above! 💕
+        </p>
+      </div>
+    );
   }
 
+  const getPriorityEmoji = (priority: string) => {
+    switch (priority) {
+      case 'High': return '🔥';
+      case 'Medium': return '⭐';
+      case 'Low': return '🌸';
+      default: return '💫';
+    }
+  };
+
   return (
-    <ul className="space-y-4">
-      {tasks.map((task) => (
-        <li
+    <div className="space-y-4">
+      <h2 className="text-lg font-bold text-pink-600 text-center mb-4">
+        🦄 Your Magical Tasks 🦄
+      </h2>
+      {tasks.map((task, index) => (
+        <div
           key={task.id}
-          className={`p-4 border rounded shadow-sm ${
-            task.completed ? 'bg-green-100 line-through' : 'bg-white'
+          className={`card-kawaii p-4 transition-all duration-300 hover:scale-[1.02] ${
+            task.completed ? 'opacity-75 bg-gradient-to-r from-pink-50 to-purple-50' : ''
           }`}
+          style={{ animationDelay: `${index * 0.1}s` }}
         >
-          <div className="flex justify-between items-center">
-            <div>
-              <h3 className="text-black font-semibold">{task.title}</h3>
+          <div className="flex justify-between items-start gap-4">
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-lg">{getPriorityEmoji(task.priority)}</span>
+                <h3 className={`font-semibold text-pink-700 ${
+                  task.completed ? 'line-through opacity-60' : ''
+                }`}>
+                  {task.title}
+                </h3>
+                {task.completed && <span className="text-lg">✅</span>}
+              </div>
+              
               {task.description && (
-                <p className="text-lg text-blue-600">{task.description}</p>
+                <p className={`text-xs text-pink-600 mb-2 ${
+                  task.completed ? 'line-through opacity-60' : ''
+                }`}>
+                  🌟 {task.description}
+                </p>
               )}
-              <p className="text-sm text-black">
-                <strong>Due:</strong> {task.dueDate || 'N/A'} |{' '}
-                <strong>Priority:</strong> {task.priority}
-              </p>
-              <p className="text-sm">
-                <strong>Tags:</strong> {task.tags.join(', ')}
-              </p>
+              
+              <div className="flex flex-wrap gap-2 text-xs">
+                {task.dueDate && (
+                  <span className="bg-pink-100 text-pink-700 px-2 py-1 rounded-full">
+                    ⏰ {new Date(task.dueDate).toLocaleDateString()}
+                  </span>
+                )}
+                <span className="bg-purple-100 text-purple-700 px-2 py-1 rounded-full">
+                  {getPriorityEmoji(task.priority)} {task.priority}
+                </span>
+              </div>
+              
+              {task.tags.length > 0 && (
+                <div className="flex flex-wrap gap-1 mt-2">
+                  {task.tags.map((tag, tagIndex) => (
+                    <span
+                      key={tagIndex}
+                      className="bg-pink-200 text-pink-800 px-2 py-1 rounded-full text-xs"
+                    >
+                      🏷️ {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
-            <div className="flex items-center gap-2">
+            
+            <div className="flex flex-col gap-2">
               <button
                 onClick={() => toggleTask(task.id)}
-                className="text-sm px-2 py-1 bg-yellow-400 rounded hover:bg-yellow-500"
+                className={`text-xs px-3 py-2 rounded-xl font-bold transition-all ${
+                  task.completed
+                    ? 'bg-gradient-to-r from-yellow-400 to-orange-400 text-white hover:from-yellow-500 hover:to-orange-500'
+                    : 'bg-gradient-to-r from-green-400 to-emerald-400 text-white hover:from-green-500 hover:to-emerald-500'
+                }`}
               >
-                {task.completed ? 'Undo' : 'Done'}
+                {task.completed ? '↩️ Undo' : '✨ Done'}
               </button>
               <button
                 onClick={() => deleteTask(task.id)}
-                className="text-sm px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+                className="text-xs px-3 py-2 bg-gradient-to-r from-red-400 to-pink-400 text-white rounded-xl hover:from-red-500 hover:to-pink-500 font-bold transition-all"
               >
-                Delete
+                🗑️ Delete
               </button>
             </div>
           </div>
-        </li>
+        </div>
       ))}
-    </ul>
+    </div>
   );
 }

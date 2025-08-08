@@ -39,20 +39,34 @@ export default function SmartInput() {
   };
 
   return (
-    <div className="bg-black-50 p-4 rounded-xl shadow mb-6">
-      <input
-        type="text"
-        placeholder='e.g. Add "call mom" for tomorrow at 2 PM'
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        className="w-full p-2 border rounded"
-      />
-      <button
-        className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        onClick={handleSmartInput}
-      >
-        Parse Command
-      </button>
+    <div className="card-kawaii p-6 mb-6">
+      <h2 className="text-lg font-bold mb-4 text-pink-600 text-center">
+        🪄 Magic Command Center 🪄
+      </h2>
+      <p className="text-xs text-pink-500 mb-4 text-center">
+        ✨ Use natural language to create tasks! ✨
+      </p>
+      <div className="relative mb-4">
+        <input
+          type="text"
+          placeholder='🌟 Try: Add "call mom" for tomorrow at 2 PM'
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          className="w-full input-kawaii pr-12"
+        />
+        <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-pink-400">🎭</span>
+      </div>
+      <div className="text-center">
+        <button
+          className="btn-kawaii px-6 py-3 rounded-xl font-bold sparkle"
+          onClick={handleSmartInput}
+        >
+          🪄 Cast Magic Spell 🪄
+        </button>
+      </div>
+      <div className="mt-4 text-xs text-pink-400 text-center">
+        💡 Example: Add "study for exam" for Friday at 3 PM
+      </div>
     </div>
   );
 }

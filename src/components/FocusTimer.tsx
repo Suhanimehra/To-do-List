@@ -17,9 +17,40 @@ export default function FocusTimer() {
   const formatTime = (s: number) => `${Math.floor(s / 60).toString().padStart(2, '0')}:${(s % 60).toString().padStart(2, '0')}`;
 
   return (
-    <div className="bg-yellow-50 p-4 rounded-xl shadow mb-6 flex justify-between items-center">
-      <div className="text-black font-semibold">🧘 Focus Timer: {formatTime(seconds)}</div>
-      <button className="btn text-black" onClick={() => setActive(!active)}>{active ? 'Pause' : 'Start Focus'}</button>
+    <div className="card-kawaii p-6 mb-6">
+      <h2 className="text-lg font-bold mb-4 text-pink-600 text-center">
+        🌸 Kawaii Focus Timer 🌸
+      </h2>
+      <div className="text-center mb-4">
+        <div className="text-3xl font-bold text-pink-700 mb-2 sparkle">
+          {formatTime(seconds)}
+        </div>
+        <div className="flex justify-center gap-2 text-lg mb-4">
+          <span className={`heart-pulse ${active ? 'text-pink-500' : 'text-pink-300'}`}>🌟</span>
+          <span className={`heart-pulse ${active ? 'text-pink-500' : 'text-pink-300'}`} style={{animationDelay: '0.5s'}}>💖</span>
+          <span className={`heart-pulse ${active ? 'text-pink-500' : 'text-pink-300'}`} style={{animationDelay: '1s'}}>🦄</span>
+        </div>
+        <p className="text-xs text-pink-500 mb-4">
+          {active ? '✨ You\'re doing amazing! Stay focused! ✨' : '🌸 Ready to focus on your magical tasks? 🌸'}
+        </p>
+      </div>
+      <div className="text-center">
+        <button 
+          className={`btn-kawaii px-6 py-3 rounded-xl font-bold transition-all ${
+            active ? 'sparkle' : ''
+          }`}
+          onClick={() => setActive(!active)}
+        >
+          {active ? '⏸️ Pause Magic' : '▶️ Start Focus Magic'}
+        </button>
+      </div>
+      {active && (
+        <div className="mt-4 text-center">
+          <div className="text-xs text-pink-400">
+            💫 Focus mode activated! You got this, princess! 💫
+          </div>
+        </div>
+      )}
     </div>
   );
 }

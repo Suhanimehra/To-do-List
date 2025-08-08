@@ -21,12 +21,40 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="max-w-4xl mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6">Context-Aware To-Do List</h1>
-      <SmartInput />
-      <TaskForm />
-      <FocusTimer />
-      <TaskList />
+    <main className="max-w-4xl mx-auto p-6 min-h-screen">
+      <div className="text-center mb-8 float-animation">
+        <h1 className="text-2xl font-bold mb-4 text-pink-600 sparkle">
+          🌸 Kawaii Todo Princess 🌸
+        </h1>
+        <p className="text-sm text-pink-500 mb-2">
+          ✨ Your magical productivity companion ✨
+        </p>
+        <div className="flex justify-center gap-2 text-lg">
+          <span className="heart-pulse">💕</span>
+          <span className="heart-pulse" style={{animationDelay: '0.5s'}}>🌟</span>
+          <span className="heart-pulse" style={{animationDelay: '1s'}}>💖</span>
+          <span className="heart-pulse" style={{animationDelay: '1.5s'}}>🦄</span>
+          <span className="heart-pulse" style={{animationDelay: '2s'}}>🌈</span>
+        </div>
+      </div>
+      
+      <div className="space-y-6">
+        <SmartInput />
+        <TaskForm />
+        <FocusTimer />
+        <TaskList />
+      </div>
+      
+      {/* Floating kawaii elements */}
+      <div className="fixed bottom-4 right-4 text-2xl float-animation" style={{animationDelay: '1s'}}>
+        🎀
+      </div>
+      <div className="fixed top-20 right-8 text-xl float-animation" style={{animationDelay: '2s'}}>
+        ✨
+      </div>
+      <div className="fixed bottom-20 left-4 text-2xl float-animation" style={{animationDelay: '0.5s'}}>
+        🌸
+      </div>
     </main>
   );
 }
