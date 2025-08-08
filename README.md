@@ -1,36 +1,23 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧠 Context-Aware To-Do List
 
-## Getting Started
+A next-generation, smart to-do list application built with **Next.js**, **Tailwind CSS**, and **Zustand** — featuring:
 
-First, run the development server:
+### ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- ✅ Standard task management: title, due date, priority, tags
+- 📍 Context-aware suggestions based on time and location
+- 🧠 Natural language input (e.g., `Add "grocery shopping" for tomorrow at 2`)
+- 🧩 Micro-tasks + Gamification
+- ⏳ Focus Mode with Pomodoro timer
+- 🔍 Search, filter, sort functionality
+- 🔔 Smart reminders
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 📦 Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- ⚛️ Next.js 14 (App Router)
+- 💨 Tailwind CSS
+- 🗂 Zustand (state management)
+- 🌐 Location & time detection
+- 🧠 AI-based smart command parsing
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- ### Live - https://to-do-list-blush-eight-33.vercel.app/
