@@ -21,9 +21,9 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="max-w-4xl mx-auto p-6 min-h-screen">
-      <div className="text-center mb-8 float-animation">
-        <h1 className="text-2xl font-bold mb-4 text-pink-600 sparkle">
+    <main className="max-w-4xl mx-auto p-6 min-h-screen pixel-bg">
+      <div className="text-center mb-8 float-animation pixel-border p-4">
+        <h1 className="text-2xl font-bold mb-4 text-pink-600 sparkle pixel-text">
           🌸 Kawaii Todo Princess 🌸
         </h1>
         <p className="text-sm text-pink-500 mb-2">
@@ -44,6 +44,9 @@ export default function Home() {
         <FocusTimer />
         <TaskList />
       </div>
+      
+      {/* Pixelated decorative elements */}
+      <div className="fixed bottom-0 left-0 w-full h-8 bg-pink-100 opacity-30" style={{backgroundSize: '8px 8px', backgroundImage: 'linear-gradient(to right, var(--pink-primary) 1px, transparent 1px), linear-gradient(to bottom, var(--pink-primary) 1px, transparent 1px)'}}></div>
       
       {/* Floating kawaii elements */}
       <div className="fixed bottom-4 right-4 text-2xl float-animation" style={{animationDelay: '1s'}}>

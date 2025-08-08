@@ -10,9 +10,9 @@ export default function TaskList() {
 
   if (tasks.length === 0) {
     return (
-      <div className="card-kawaii p-8 text-center">
-        <div className="text-4xl mb-4">🌸</div>
-        <p className="text-pink-500 text-sm">
+      <div className="card-kawaii p-8 text-center pixel-bg">
+        <div className="text-4xl mb-4 pixel-border p-2">🌸</div>
+        <p className="text-pink-500 text-sm pixel-text">
           No magical tasks yet! ✨<br />
           Add your first kawaii task above! 💕
         </p>
@@ -31,16 +31,16 @@ export default function TaskList() {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-lg font-bold text-pink-600 text-center mb-4">
+      <h2 className="text-lg font-bold text-pink-600 text-center mb-4 pixel-text">
         🦄 Your Magical Tasks 🦄
       </h2>
       {tasks.map((task, index) => (
         <div
           key={task.id}
-          className={`card-kawaii p-4 transition-all duration-300 hover:scale-[1.02] ${
+          className={`card-kawaii p-4 transition-all duration-300 hover:scale-[1.02] pixel-border ${
             task.completed ? 'opacity-75 bg-gradient-to-r from-pink-50 to-purple-50' : ''
           }`}
-          style={{ animationDelay: `${index * 0.1}s` }}
+          style={{ animationDelay: `${index * 0.1}s`, imageRendering: 'pixelated' }}
         >
           <div className="flex justify-between items-start gap-4">
             <div className="flex-1">
@@ -78,7 +78,8 @@ export default function TaskList() {
                   {task.tags.map((tag, tagIndex) => (
                     <span
                       key={tagIndex}
-                      className="bg-pink-200 text-pink-800 px-2 py-1 rounded-full text-xs"
+                      className="bg-pink-200 text-pink-800 px-2 py-1 rounded-full text-xs pixel-bg"
+                      style={{ imageRendering: 'pixelated' }}
                     >
                       🏷️ {tag}
                     </span>
@@ -95,12 +96,14 @@ export default function TaskList() {
                     ? 'bg-gradient-to-r from-yellow-400 to-orange-400 text-white hover:from-yellow-500 hover:to-orange-500'
                     : 'bg-gradient-to-r from-green-400 to-emerald-400 text-white hover:from-green-500 hover:to-emerald-500'
                 }`}
+                style={{ imageRendering: 'pixelated' }}
               >
                 {task.completed ? '↩️ Undo' : '✨ Done'}
               </button>
               <button
                 onClick={() => deleteTask(task.id)}
                 className="text-xs px-3 py-2 bg-gradient-to-r from-red-400 to-pink-400 text-white rounded-xl hover:from-red-500 hover:to-pink-500 font-bold transition-all"
+                style={{ imageRendering: 'pixelated' }}
               >
                 🗑️ Delete
               </button>

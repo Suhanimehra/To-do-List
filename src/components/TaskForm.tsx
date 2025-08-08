@@ -36,49 +36,53 @@ export default function TaskForm() {
   };
 
   return (
-    <div className="card-kawaii p-6 mb-6">
-      <h2 className="text-lg font-bold mb-4 text-pink-600 text-center">
+    <div className="card-kawaii p-6 mb-6 pixel-bg">
+      <h2 className="text-lg font-bold mb-4 text-pink-600 text-center pixel-text">
         🌟 Create New Task 🌟
       </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="relative">
+        <div className="relative pixel-border p-1">
           <input
             type="text"
             placeholder="✨ What magical task shall we add? ✨"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             className="w-full input-kawaii"
+            style={{ imageRendering: 'pixelated' }}
             required
           />
           <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-pink-400">💖</span>
         </div>
         
-        <div className="relative">
+        <div className="relative pixel-border p-1">
           <textarea
             placeholder="🌸 Tell me more about this task... 🌸"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             className="w-full input-kawaii min-h-[80px] resize-none"
+            style={{ imageRendering: 'pixelated' }}
             rows={3}
           />
           <span className="absolute right-3 top-3 text-pink-400">🦄</span>
         </div>
         
-        <div className="relative">
+        <div className="relative pixel-border p-1">
           <input
             type="datetime-local"
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
             className="w-full input-kawaii"
+            style={{ imageRendering: 'pixelated' }}
           />
           <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-pink-400">⏰</span>
         </div>
         
-        <div className="relative">
+        <div className="relative pixel-border p-1">
           <select
             value={priority}
             onChange={(e) => setPriority(e.target.value as 'High' | 'Medium' | 'Low')}
             className="w-full input-kawaii appearance-none cursor-pointer"
+            style={{ imageRendering: 'pixelated' }}
           >
             <option value="High">🔥 Super Important!</option>
             <option value="Medium">⭐ Pretty Important</option>
@@ -87,13 +91,14 @@ export default function TaskForm() {
           <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-pink-400 pointer-events-none">💫</span>
         </div>
         
-        <div className="relative">
+        <div className="relative pixel-border p-1">
           <input
             type="text"
             placeholder="🏷️ Tags (comma separated) - like #cute, #work"
             value={tags}
             onChange={(e) => setTags(e.target.value)}
             className="w-full input-kawaii"
+            style={{ imageRendering: 'pixelated' }}
           />
           <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-pink-400">🎀</span>
         </div>
@@ -102,6 +107,7 @@ export default function TaskForm() {
           <button
             type="submit"
             className="btn-kawaii px-8 py-3 rounded-xl font-bold sparkle"
+            style={{ imageRendering: 'pixelated' }}
           >
             ✨ Add Magical Task ✨
           </button>

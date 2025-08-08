@@ -39,20 +39,21 @@ export default function SmartInput() {
   };
 
   return (
-    <div className="card-kawaii p-6 mb-6">
-      <h2 className="text-lg font-bold mb-4 text-pink-600 text-center">
+    <div className="card-kawaii p-6 mb-6 pixel-bg">
+      <h2 className="text-lg font-bold mb-4 text-pink-600 text-center pixel-text">
         🪄 Magic Command Center 🪄
       </h2>
       <p className="text-xs text-pink-500 mb-4 text-center">
         ✨ Use natural language to create tasks! ✨
       </p>
-      <div className="relative mb-4">
+      <div className="relative mb-4 pixel-border p-1">
         <input
           type="text"
           placeholder='🌟 Try: Add "call mom" for tomorrow at 2 PM'
           value={input}
           onChange={(e) => setInput(e.target.value)}
           className="w-full input-kawaii pr-12"
+          style={{ imageRendering: 'pixelated' }}
         />
         <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-pink-400">🎭</span>
       </div>
@@ -60,11 +61,12 @@ export default function SmartInput() {
         <button
           className="btn-kawaii px-6 py-3 rounded-xl font-bold sparkle"
           onClick={handleSmartInput}
+          style={{ imageRendering: 'pixelated' }}
         >
           🪄 Cast Magic Spell 🪄
         </button>
       </div>
-      <div className="mt-4 text-xs text-pink-400 text-center">
+      <div className="mt-4 text-xs text-pink-400 text-center pixel-border p-2">
         💡 Example: Add "study for exam" for Friday at 3 PM
       </div>
     </div>
