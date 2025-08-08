@@ -1,6 +1,7 @@
 // File: components/FocusTimer.tsx
 'use client'
 import { useEffect, useState } from "react";
+import { playSound } from '../lib/sounds';
 
 export default function FocusTimer() {
   const [seconds, setSeconds] = useState(1500); // 25 min
@@ -39,7 +40,17 @@ export default function FocusTimer() {
           className={`btn-kawaii px-6 py-3 rounded-xl font-bold transition-all ${
             active ? 'sparkle' : ''
           }`}
-          onClick={() => setActive(!active)}
+          onClick={() => {
+            setActive(!active);
+            playSound('click');
+            
+            // Add animation
+            const button = document.activeElement as HTMLElement;
+            if (button) {
+              button.classList.add(active ? 'shake' : 'celebrate');
+              setTimeout(() => button.classList.remove(active ? 'shake' : 'celebrate'), 500);
+            }
+          }}
           style={{imageRendering: 'pixelated'}}
         >
           {active ? '⏸️ Pause Magic' : '▶️ Start Focus Magic'}

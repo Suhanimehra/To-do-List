@@ -2,11 +2,16 @@
 'use client';
 
 import { useTasksStore } from '../lib/store';
+import { playSound } from '../lib/sounds';
+import { useEffect } from 'react';
 
 export default function TaskList() {
-  const tasks = useTasksStore((state) => state.tasks);
+  const getFilteredAndSortedTasks = useTasksStore((state) => state.getFilteredAndSortedTasks);
   const toggleTask = useTasksStore((state) => state.toggleTask);
   const deleteTask = useTasksStore((state) => state.deleteTask);
+  
+  // Get filtered and sorted tasks
+  const tasks = getFilteredAndSortedTasks();
 
   if (tasks.length === 0) {
     return (
@@ -90,7 +95,27 @@ export default function TaskList() {
             
             <div className="flex flex-col gap-2">
               <button
-                onClick={() => toggleTask(task.id)}
+                onClick={() => {
+                  toggleTask(task.id);
+                  
+                  // Play sound effect
+                  if (!task.completed) {
+                    playSound('complete');
+                    
+                    // Dispatch custom event for confetti
+                    const event = new CustomEvent('taskCompleted');
+                    window.dispatchEvent(event);
+                    
+                    // Add celebrate class for animation
+                    const button = document.activeElement as HTMLElement;
+                    if (button) {
+                      button.classList.add('celebrate');
+                      setTimeout(() => button.classList.remove('celebrate'), 500);
+                    }
+                  } else {
+                    playSound('click');
+                  }
+                }}
                 className={`text-xs px-3 py-2 rounded-xl font-bold transition-all ${
                   task.completed
                     ? 'bg-gradient-to-r from-yellow-400 to-orange-400 text-white hover:from-yellow-500 hover:to-orange-500'
@@ -101,7 +126,17 @@ export default function TaskList() {
                 {task.completed ? '↩️ Undo' : '✨ Done'}
               </button>
               <button
-                onClick={() => deleteTask(task.id)}
+                onClick={() => {
+                  deleteTask(task.id);
+                  playSound('click');
+                  
+                  // Add shake animation
+                  const button = document.activeElement as HTMLElement;
+                  if (button) {
+                    button.classList.add('shake');
+                    setTimeout(() => button.classList.remove('shake'), 500);
+                  }
+                }}
                 className="text-xs px-3 py-2 bg-gradient-to-r from-red-400 to-pink-400 text-white rounded-xl hover:from-red-500 hover:to-pink-500 font-bold transition-all"
                 style={{ imageRendering: 'pixelated' }}
               >

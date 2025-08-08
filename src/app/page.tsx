@@ -4,24 +4,49 @@ import TaskList from '../components/TaskList';
 import TaskForm from '../components/TaskForm';
 import FocusTimer from '../components/FocusTimer';
 import SmartInput from '../components/SmartInput';
-import { useEffect } from 'react';
+import SettingsPanel from '../components/SettingsPanel';
+import TaskControls from '../components/TaskControls';
+import TaskStats from '../components/TaskStats';
+import { useEffect, useState } from 'react';
 import { useTasksStore } from '../lib/store';
+import Confetti from '../components/Confetti';
 
 export default function Home() {
   const setLocationContext = useTasksStore((state) => state.setLocationContext);
+  const [showConfetti, setShowConfetti] = useState(false);
+  
+  // Listen for task completion to trigger confetti
+  useEffect(() => {
+    const handleTaskComplete = () => {
+      setShowConfetti(true);
+      setTimeout(() => setShowConfetti(false), 3000);
+    };
+    
+    // Create a custom event for task completion
+    window.addEventListener('taskCompleted', handleTaskComplete);
+    
+    return () => {
+      window.removeEventListener('taskCompleted', handleTaskComplete);
+    };
+  }, []);
 
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
         setLocationContext('Home'); // or 'Unknown', 'Office', etc.
-
       });
     }
   }, []);
 
   return (
     <main className="max-w-4xl mx-auto p-6 min-h-screen pixel-bg">
+      {/* Settings Panel */}
+      <SettingsPanel />
+      
+      {/* Confetti Effect */}
+      <Confetti active={showConfetti} />
+      
       <div className="text-center mb-8 float-animation pixel-border p-4">
         <h1 className="text-2xl font-bold mb-4 text-pink-600 sparkle pixel-text">
           🌸 Kawaii Todo Princess 🌸
@@ -41,7 +66,11 @@ export default function Home() {
       <div className="space-y-6">
         <SmartInput />
         <TaskForm />
-        <FocusTimer />
+        <TaskControls />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <FocusTimer />
+          <TaskStats />
+        </div>
         <TaskList />
       </div>
       

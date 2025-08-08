@@ -3,6 +3,7 @@
 
 import { useState } from 'react';
 import { useTasksStore } from '../lib/store';
+import { playSound } from '../lib/sounds';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function SmartInput() {
@@ -18,6 +19,7 @@ export default function SmartInput() {
       // Ensure valid date
       if (isNaN(dueDate.getTime())) {
         alert('Invalid date format.');
+        playSound('click');
         return;
       }
 
@@ -29,12 +31,28 @@ export default function SmartInput() {
         priority: 'Medium' as 'High' | 'Medium' | 'Low',
         tags: [],
         completed: false,
+        createdAt: Date.now(), // Add timestamp for sorting
       };
 
       addTask(newTask);
       setInput('');
+      
+      // Play sound effect
+      playSound('add');
+      
+      // Add animation to the button
+      const button = document.activeElement as HTMLElement;
+      if (button) {
+        button.classList.add('celebrate');
+        setTimeout(() => button.classList.remove('celebrate'), 500);
+      }
+      
+      // Trigger confetti
+      const event = new CustomEvent('taskCompleted');
+      window.dispatchEvent(event);
     } else {
       alert('Please use format: Add task for <day> at <time>');
+      playSound('click');
     }
   };
 

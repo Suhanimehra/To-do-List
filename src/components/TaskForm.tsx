@@ -3,6 +3,7 @@
 
 import { useState } from 'react';
 import { useTasksStore } from '../lib/store';
+import { playSound } from '../lib/sounds';
 
 export default function TaskForm() {
   const addTask = useTasksStore((state) => state.addTask);
@@ -25,7 +26,18 @@ export default function TaskForm() {
       priority,
       tags: tags.split(',').map(tag => tag.trim()),
       completed: false,
+      createdAt: Date.now(), // Add timestamp for sorting
     });
+
+    // Play sound effect
+    playSound('add');
+    
+    // Add animation to the button
+    const button = document.activeElement as HTMLElement;
+    if (button) {
+      button.classList.add('celebrate');
+      setTimeout(() => button.classList.remove('celebrate'), 500);
+    }
 
     // Reset form
     setTitle('');
